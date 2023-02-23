@@ -17,12 +17,20 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     private InputManager inputManager;
     private Transform cameraTransform;
+    public static PlayerController Instance;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        // Cursor.visible = false;
+        
     }
 
     void Update()
