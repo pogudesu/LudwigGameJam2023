@@ -16,7 +16,7 @@ public class LudwigOpeningDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dialogueEnabled)
+        if (!dialogueEnabled && !flowdata.GetBooleanVariable("finished"))
         {
             flowdata.ExecuteBlock("GameStart");
             PlayerController.Instance.camExtension.LookatObject = gameObject;
@@ -29,6 +29,7 @@ public class LudwigOpeningDialogue : MonoBehaviour
             if (done)
             {
                 InputManager.Instance.LockControl(false);
+                dialogueEnabled = false;
             }
         }
     }
