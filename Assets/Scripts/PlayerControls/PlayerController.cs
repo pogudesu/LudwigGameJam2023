@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private InputManager inputManager;
     private Transform cameraTransform;
     public static PlayerController Instance;
+    public CinemachinePOVExtension camExtension;
+    public GameObject camPos;
+    public Collider colliderhit;
 
     private void Start()
     {
@@ -60,5 +63,20 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if(inputManager.PlayerInteract())
+        {
+            RaycastHit ray;
+            if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out ray, 1000.0f))
+            {
+
+                if(ray.collider.GetComponent<Interactables>() != null)
+                {
+                    colliderhit = ray.collider;
+                    Interactables obj = colliderhit.GetComponent<Interactables>();
+                    obj.Interact();
+                }
+            }
+        }
     }
 }
