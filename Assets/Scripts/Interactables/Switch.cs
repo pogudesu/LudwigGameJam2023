@@ -6,42 +6,33 @@ public class Switch : Interactables
 {
     [SerializeField]
     public bool isOn = false;
-    public float interactableDistance;
 
-    [SerializeField]
-    private float distanceToPlayer;
-    private GameObject player;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if(distanceToPlayer <= interactableDistance)
-        {
-            //TODO: Show UI here to prompt player that they can interact with this object
-            if (InputManager.Instance.PlayerInteract())
-            {
-                Interact();
-            }
-        }
+        base.Update();
     }
 
     public override bool Interact() //return whether interaction with the object is successful
     {
-        if(isOn)
+        if (distanceToPlayer <= interactableDistance)
         {
-            isOn = false;
-            return true; //interaction successful
-        }
-        else
-        {
-            isOn = true;
-            return false; //interaction successful
+            if (isOn)
+            {
+                isOn = false;
+                return true; //interaction successful
+            }
+            else
+            {
+                isOn = true;
+                return false; //interaction successful
+            }
         }
         return false; //interaction unsuccessful
     }
