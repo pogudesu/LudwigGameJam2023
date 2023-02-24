@@ -81,7 +81,7 @@ public class InputManager : MonoBehaviour
             b_LockControl = lockControl;
             Debug.Log("Camera Locked.");
         }
-        else
+        if (!lockControl)
         {
             Cursor.visible = false;
             b_LockCamera = lockControl;
@@ -90,6 +90,21 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void ForceLockControl()
+    {
+        Cursor.visible = true;
+        b_LockCamera = true;
+        b_LockControl = true;
+        Debug.Log("Camera Force Locked.");
+    }
+
+    public void ForceUnlockControl()
+    {
+        Cursor.visible = false;
+        b_LockCamera = false;
+        b_LockControl = false;
+        Debug.Log("Camera Force Unlocked.");
+    }
     public bool isCamLocked()
     {
         return b_LockCamera;
