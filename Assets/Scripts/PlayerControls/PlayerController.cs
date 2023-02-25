@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         // Cursor.visible = false;
         
     }
-
+    private int nextUpdate=1;
     void Update()
     {
         groundedPlayer = controller.isGrounded;
@@ -78,5 +78,15 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            /////////////// FootStep /////////////////
+            if(Time.time>=nextUpdate){
+                nextUpdate=Mathf.FloorToInt(Time.time)+1;
+                AudioManager.Instance.PlatFootstep();
+            }
+        }
+
     }
 }

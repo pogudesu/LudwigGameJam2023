@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
         _audioSource.loop = true;
         _audioSource.clip = introBGM;
         _audioSource.volume = volume;
-        _audioSource.Play();
+        // _audioSource.Play();
     }
     public void PlayIntro()
     {
@@ -91,6 +91,12 @@ public class AudioManager : MonoBehaviour
     public void PlayButton()
     {
         PlaySFX(SFX.BUTTON);
+    }
+
+    public void PlatFootstep()
+    {
+        int random = UnityEngine.Random.Range(0, sfxs.Count);
+        _audioSource.PlayOneShot(sfxs[random].clip);
     }
 }
 
