@@ -12,6 +12,7 @@ namespace SojaExiles
 		public bool open;
 		public Transform Player;
 		public AudioSource audiosource;
+		private GameObject audioSourceObj;
 		public AudioClip sfx_open;
 		public AudioClip sfx_close;
 
@@ -27,6 +28,17 @@ namespace SojaExiles
 
 		public override void Update()
 		{
+			if (audiosource == null)
+			{
+				audioSourceObj = Instantiate(AudioManager.Instance.audioSourcePrefab);
+				audioSourceObj.transform.position = gameObject.transform.position;
+				audiosource = audioSourceObj.GetComponent<AudioSource>();
+			}
+			if (sfx_open == null)
+			{
+				sfx_open = AudioManager.Instance.sfx_defaultopen;
+				sfx_close = AudioManager.Instance.sfx_defaultclose;
+			}
 			base.Update();
 		}
 

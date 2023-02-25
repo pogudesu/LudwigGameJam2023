@@ -12,8 +12,10 @@ namespace SojaExiles
 		public bool open;
 		public Transform PlayerControl;
 		public AudioSource audiosource;
+		private GameObject audioSourceObj;
 		public AudioClip sfx_open;
 		public AudioClip sfx_close;
+		[SerializeField] float sfx_volume = 0.0f;
 
 		public override void Start()
 		{
@@ -21,6 +23,17 @@ namespace SojaExiles
 		}
 		public override void Update()
 		{
+			if (audiosource == null)
+			{
+				audioSourceObj = Instantiate(AudioManager.Instance.audioSourcePrefab);
+				audioSourceObj.transform.position = gameObject.transform.position;
+				audiosource = audioSourceObj.GetComponent<AudioSource>();
+			}
+			if (sfx_open == null)
+			{
+				sfx_open = AudioManager.Instance.sfx_defaultopen;
+				sfx_close = AudioManager.Instance.sfx_defaultclose;
+			}
 			base.Update();
 		}
 
@@ -81,6 +94,7 @@ namespace SojaExiles
 			Closetopenandclose.Play("ClosetOpening");
 			if (audiosource != null)
 			{
+				audiosource.volume = sfx_volume;
 				audiosource.clip = sfx_open;
 				audiosource.Play();
 			}
@@ -94,6 +108,7 @@ namespace SojaExiles
 			Closetopenandclose.Play("ClosetClosing");
 			if (audiosource != null)
 			{
+				audiosource.volume = sfx_volume;
 				audiosource.clip = sfx_close;
 				audiosource.Play();
 			}

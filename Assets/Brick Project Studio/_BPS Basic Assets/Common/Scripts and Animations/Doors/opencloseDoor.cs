@@ -19,6 +19,7 @@ namespace SojaExiles
 		public AudioClip sfx_close;
 		public TriggerFinalCutScene triggerFinalCutScene;
 		public bool isReadyForCutScene = false;
+
 		public override void Start()
 		{
 			open = false;
@@ -39,6 +40,11 @@ namespace SojaExiles
 				audioSourceObj.transform.position = gameObject.transform.position;
 				audiosource = audioSourceObj.GetComponent<AudioSource>();
 			}
+			if(sfx_open == null)
+            {
+				sfx_open = AudioManager.Instance.sfx_defaultopen;
+				sfx_close = AudioManager.Instance.sfx_defaultclose;
+            }
 			base.Update();
         }
 
