@@ -24,8 +24,15 @@ public class InputManager : MonoBehaviour
         }
 
         playerControls = new PlayerControls();
+        HideMouseCursor();
+    }
+
+    public void HideMouseCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
     private void OnEnable()
     {
         playerControls.Enable();

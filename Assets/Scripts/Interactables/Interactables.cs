@@ -20,6 +20,14 @@ public class Interactables : MonoBehaviour
     }
     public virtual void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        if(interactableDistance == 0.0f)
+        {
+            interactableDistance = 3.0f;
+        }
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
     }
 }
