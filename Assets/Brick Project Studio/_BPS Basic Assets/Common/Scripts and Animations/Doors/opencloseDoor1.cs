@@ -5,19 +5,43 @@ using UnityEngine;
 namespace SojaExiles
 
 {
-	public class opencloseDoor1 : MonoBehaviour
+	public class opencloseDoor1 : Interactables
 	{
 
 		public Animator openandclose1;
 		public bool open;
 		public Transform Player;
+		public AudioSource audiosource;
+		public AudioClip sfx_open;
+		public AudioClip sfx_close;
 
-		void Start()
+		public override void Start()
 		{
 			open = false;
 			Player = PlayerController.Instance.transform;
 		}
 
+		public override void Update()
+		{
+			base.Update();
+		}
+
+		public override bool Interact()
+		{
+			if (distanceToPlayer < interactableDistance)
+			{
+				if (open == false)
+				{
+					StartCoroutine(opening());
+				}
+				else
+				{
+					StartCoroutine(closing());
+				}
+			}
+			return false;
+		}
+		/*
 		void OnMouseOver()
 		{
 			{
@@ -51,11 +75,16 @@ namespace SojaExiles
 			}
 
 		}
-
+		*/
 		IEnumerator opening()
 		{
 			print("you are opening the door");
 			openandclose1.Play("Opening 1");
+			if (audiosource != null)
+			{
+				audiosource.clip = sfx_open;
+				audiosource.Play();
+			}
 			open = true;
 			yield return new WaitForSeconds(.5f);
 		}
@@ -64,6 +93,11 @@ namespace SojaExiles
 		{
 			print("you are closing the door");
 			openandclose1.Play("Closing 1");
+			if (audiosource != null)
+			{
+				audiosource.clip = sfx_close;
+				audiosource.Play();
+			}
 			open = false;
 			yield return new WaitForSeconds(.5f);
 		}

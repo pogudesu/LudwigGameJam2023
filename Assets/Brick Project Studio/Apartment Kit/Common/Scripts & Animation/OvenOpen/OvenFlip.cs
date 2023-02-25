@@ -5,18 +5,42 @@ using UnityEngine;
 namespace SojaExiles
 
 {
-	public class OvenFlip: MonoBehaviour
+	public class OvenFlip: Interactables
 	{
 
 		public Animator openandcloseoven;
 		public bool open;
 		public Transform Player;
+		public AudioSource audiosource;
+		public AudioClip sfx_open;
+		public AudioClip sfx_close;
 
-		void Start()
+		public override void Start()
 		{
 			open = false;
 		}
 
+		public override void Update()
+		{
+			base.Update();
+		}
+
+		public override bool Interact()
+		{
+			if (distanceToPlayer < interactableDistance)
+			{
+				if (open == false)
+				{
+					StartCoroutine(opening());
+				}
+				else
+				{
+					StartCoroutine(closing());
+				}
+			}
+			return false;
+		}
+		/*
 		void OnMouseOver()
 		{
 			{
@@ -50,7 +74,7 @@ namespace SojaExiles
 			}
 
 		}
-
+		*/
 		IEnumerator opening()
 		{
 			print("you are opening the Window");
