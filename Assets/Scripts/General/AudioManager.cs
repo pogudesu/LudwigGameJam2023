@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     [Range(0, 1)] public float volume;
     public float durationFade = 0.5f;
     public List<SoundEffects> sfxs = new List<SoundEffects>();
+    public List<SoundEffects> animals = new List<SoundEffects>();
     private void Start()
     {
         if (Instance == null)
@@ -97,6 +98,11 @@ public class AudioManager : MonoBehaviour
     {
         int random = UnityEngine.Random.Range(0, sfxs.Count);
         _audioSource.PlayOneShot(sfxs[random].clip);
+    }
+    public void PlatAnimalSounds()
+    {
+        int random = UnityEngine.Random.Range(0, animals.Count);
+        _audioSource.PlayOneShot(animals[random].clip);
     }
 }
 
