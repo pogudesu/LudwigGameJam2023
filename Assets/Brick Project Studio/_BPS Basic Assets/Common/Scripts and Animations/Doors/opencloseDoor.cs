@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityTemplateProjects;
 
 namespace SojaExiles
 
@@ -11,11 +12,14 @@ namespace SojaExiles
 		public Animator openandclose;
 		public bool open;
 		public Transform Player;
+		public TriggerFinalCutScene triggerFinalCutScene;
+		public bool isReadyForCutScene = false;
 
 		void Start()
 		{
 			open = false;
 			Player = PlayerController.Instance.transform;
+			// triggerFinalCutScene = GetComponent<TriggerFinalCutScene>();
 		}
 
 		void OnMouseOver()
@@ -52,15 +56,19 @@ namespace SojaExiles
 
 		}
 
-		IEnumerator opening()
+		public IEnumerator opening()
 		{
 			print("you are opening the door");
 			openandclose.Play("Opening");
 			open = true;
+			if (triggerFinalCutScene && isReadyForCutScene)
+			{
+				triggerFinalCutScene.StartFinalCutscene();
+			}
 			yield return new WaitForSeconds(.5f);
 		}
 
-		IEnumerator closing()
+		public IEnumerator closing()
 		{
 			print("you are closing the door");
 			openandclose.Play("Closing");
