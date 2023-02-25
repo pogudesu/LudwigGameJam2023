@@ -10,6 +10,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]private AudioClip environmentBGM;
     [SerializeField]private AudioClip ambienceBGM;
     [SerializeField]private AudioClip finalBGM;
+    [SerializeField] public AudioClip sfx_defaultopen;
+    [SerializeField] public AudioClip sfx_defaultclose;
+
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] public GameObject audioSourcePrefab; //used for doors that doesn't have it's own audiosource yet.
