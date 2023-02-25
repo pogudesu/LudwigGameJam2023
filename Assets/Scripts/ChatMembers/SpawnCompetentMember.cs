@@ -42,6 +42,7 @@ public class SpawnCompetentMember : MonoBehaviour
 
     public void DisableRenderers()
     {
+        return;
         for (int i = 0; i < mrs.Count; i++)
         {
             mrs[i].GetComponent<Collider>().enabled = false;

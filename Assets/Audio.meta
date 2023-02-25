@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 540cbd6325e09c1469550720d0b354dc
+=======
+guid: be86886fdaba9404aa7f4a75a18a79c0
+>>>>>>> CutsceneIntro
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

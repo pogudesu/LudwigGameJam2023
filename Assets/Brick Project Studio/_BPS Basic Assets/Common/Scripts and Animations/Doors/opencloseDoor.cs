@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityTemplateProjects;
 
 namespace SojaExiles
 
@@ -14,14 +15,18 @@ namespace SojaExiles
 		public AudioSource audiosource;
 		public AudioClip sfx_open;
 		public AudioClip sfx_close;
+		public TriggerFinalCutScene triggerFinalCutScene;
+		public bool isReadyForCutScene = false;
 		public override void Start()
 		{
 			open = false;
 			Player = PlayerController.Instance.transform;
 			base.Start();
+
+
 		}
 
-        public override void Update()
+		public override void Update()
         {
             base.Update();
         }
@@ -76,8 +81,12 @@ namespace SojaExiles
 			}
 
 		}
+<<<<<<< HEAD
 		*/
-		IEnumerator opening()
+
+
+
+		public IEnumerator opening()
 		{
 			print("you are opening the door");
 			openandclose.Play("Opening");
@@ -87,10 +96,14 @@ namespace SojaExiles
 				audiosource.Play();
 			}
 			open = true;
+			if (triggerFinalCutScene && isReadyForCutScene)
+			{
+				triggerFinalCutScene.StartFinalCutscene();
+			}
 			yield return new WaitForSeconds(.5f);
 		}
 
-		IEnumerator closing()
+		public IEnumerator closing()
 		{
 			print("you are closing the door");
 			openandclose.Play("Closing");
