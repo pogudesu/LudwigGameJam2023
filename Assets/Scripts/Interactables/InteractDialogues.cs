@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityTemplateProjects;
 
 public class InteractDialogues : Interactables
 {
@@ -24,6 +25,7 @@ public class InteractDialogues : Interactables
                     InputManager.Instance.LockControl(true);
                     dialogueEnabled = true;
                     AudioManager.Instance.PlatAnimalSounds();
+                    CountdownPresenter.Instance.Show();
                 }
             }
             return true;
