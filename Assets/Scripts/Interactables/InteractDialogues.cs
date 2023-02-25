@@ -23,6 +23,7 @@ public class InteractDialogues : Interactables
                     PlayerController.Instance.camExtension.LookatObject = gameObject;
                     InputManager.Instance.LockControl(true);
                     dialogueEnabled = true;
+                    AudioManager.Instance.PlatAnimalSounds();
                 }
             }
             return true;
