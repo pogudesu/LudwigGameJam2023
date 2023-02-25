@@ -12,7 +12,9 @@ namespace SojaExiles
 		public Animator openandclose;
 		public bool open;
 		public Transform Player;
-		public AudioSource audiosource;
+		[SerializeField]
+		private AudioSource audiosource;
+		private GameObject audioSourceObj;
 		public AudioClip sfx_open;
 		public AudioClip sfx_close;
 		public TriggerFinalCutScene triggerFinalCutScene;
@@ -20,7 +22,10 @@ namespace SojaExiles
 		public override void Start()
 		{
 			open = false;
-			Player = PlayerController.Instance.transform;
+			//if (PlayerController.Instance.transform != null)
+			//{
+			//	Player = PlayerController.Instance.transform;
+			//}
 			base.Start();
 
 
@@ -28,7 +33,13 @@ namespace SojaExiles
 
 		public override void Update()
         {
-            base.Update();
+			if (audiosource == null)
+			{
+				audioSourceObj = Instantiate(AudioManager.Instance.audioSourcePrefab);
+				audioSourceObj.transform.position = gameObject.transform.position;
+				audiosource = audioSourceObj.GetComponent<AudioSource>();
+			}
+			base.Update();
         }
 
         public override bool Interact()

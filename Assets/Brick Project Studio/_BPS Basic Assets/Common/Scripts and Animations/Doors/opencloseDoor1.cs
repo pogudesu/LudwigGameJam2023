@@ -18,7 +18,11 @@ namespace SojaExiles
 		public override void Start()
 		{
 			open = false;
-			Player = PlayerController.Instance.transform;
+			//if (PlayerController.Instance.transform != null)
+			//{
+			//	Player = PlayerController.Instance.transform;
+			//}
+			base.Start();
 		}
 
 		public override void Update()

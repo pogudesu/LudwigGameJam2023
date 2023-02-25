@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]private AudioClip finalBGM;
 
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] public GameObject audioSourcePrefab; //used for doors that doesn't have it's own audiosource yet.
     [Range(0, 1)] public float volume;
     public float durationFade = 0.5f;
     public List<SoundEffects> sfxs = new List<SoundEffects>();
