@@ -16,6 +16,7 @@ public class LudwigOpeningDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        return;
         if (!dialogueEnabled && !flowdata.GetBooleanVariable("finished"))
         {
             flowdata.ExecuteBlock("GameStart");
